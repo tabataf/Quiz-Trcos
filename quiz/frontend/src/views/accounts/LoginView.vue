@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row align="center" class="mt-10" no-gutters>
+    <v-row align="center" class="mt-10 login" no-gutters>
       <v-col cols="12" sm="6" offset-sm="3">
         <v-sheet class="pa-2"> <h1>Login</h1> </v-sheet>
         <v-form>
@@ -25,17 +25,27 @@
             block
             size="large"
             rounded="pill"
-            color="primary"
+            color="pink"
             append-icon="mdi-chevron-right"
             @click="login">
             Login
+          </v-btn>
+          <v-btn
+            block
+            class="my-2"
+            size="large"
+            rounded="pill"
+            color="#C2185B"
+            append-icon="mdi-chevron-right"
+            @click="cadastro">
+            Cadastrar
           </v-btn>
           <v-btn
             class="my-2"
             block
             size="large"
             rounded="pill"
-            color="primary"
+            color="pink"
             variant="outlined"
             :to="{ name: 'base-home' }">
             Início
@@ -97,6 +107,21 @@ export default {
           this.loading = false
         })
     },
+    cadastro() {
+      this.loading = true
+      AccountsApi.cadastro(this.username, this.password)
+        .then((response) => {
+          if (!response) {
+            this.appStore.showSnackbar("Usuário ou senha invalida", "danger")
+            return
+          }
+          this.saveLoggedUser(response.user)
+          this.showTasks()
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
     saveLoggedUser(user) {
       this.error = !user
       if (user) {
@@ -112,3 +137,8 @@ export default {
   },
 }
 </script>
+<style>
+.login{
+  margin-top: 19rem;
+}
+</style>

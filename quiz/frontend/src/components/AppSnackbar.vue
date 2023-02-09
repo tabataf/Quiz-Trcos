@@ -31,9 +31,9 @@ export default {
     },
     snackbarCollors() {
       const typeCollor = {
-        success: "primary",
+        success: "purple",
         danger: "red",
-        warning: "orange",
+        warning: "pink",
       }
       return `${typeCollor[this.type || "success"]} accent-4`
     },

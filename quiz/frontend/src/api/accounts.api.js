@@ -26,6 +26,18 @@ export default {
         })
     })
   },
+  cadastro: (username, password) => {
+    return new Promise((resolve, reject) => {
+      api
+        .post("/api/accounts/cadastro", apiHelpers.dataToForm({ name, username, password }))
+        .then((response) => {
+          return resolve(response.data)
+        })
+        .catch((error) => {
+          return reject(error)
+        })
+    })
+  },
   logout: () => {
     return new Promise((resolve, reject) => {
       api

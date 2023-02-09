@@ -44,7 +44,7 @@
           </v-btn>
           <v-btn
             v-else
-            color="primary"
+            color="pink"
             min-width="228"
             rel="noopener noreferrer"
             size="x-large"
@@ -55,13 +55,13 @@
           </v-btn>
           <v-btn
             v-if="loggedUser"
-            color="primary"
+            color="pink"
             min-width="228"
             rel="noopener noreferrer"
             size="x-large"
             variant="flat"
             :to="{ name: 'tasks-list' }"
-            class="my-4">
+            class="my-4 ml-4">
             <v-icon icon="mdi-folder-star-multiple" size="large" start />
             tarefas
           </v-btn>

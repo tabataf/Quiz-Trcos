@@ -1,7 +1,7 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
-      <v-img contain height="240" src="@/assets/logo.png" />
+      <v-img contain height="240" class="mb-6" src="@/assets/quiz.png" />
 
       <v-card>
         <v-card-title class="headline">Projeto fullstack </v-card-title>
@@ -11,7 +11,7 @@
           </p>
           <h3 class="pt-6">Links úteis:</h3>
           <v-btn
-            href="https://github.com/huogerac/djavue/"
+            href="https://github.com/tabataf/Quiz-Trcos/tree/master/quiz"
             min-width="164"
             rel="noopener noreferrer"
             target="_blank"
@@ -50,7 +50,7 @@
           <p class="pt-6">
             Achou um problema? Cadastre uma
             <a
-              href="https://github.com/huogerac/djavue/issues"
+              href="https://github.com/tabataf/Quiz-Trcos/issues"
               target="_blank"
               rel="noopener noreferrer"
               title="contribute">
@@ -59,13 +59,13 @@
           </p>
           <p>Obrigado por utilizar este template.</p>
           <div class="text-xs-right">
-            <em><small>&mdash; Tábata de faria 🦋 </small></em>
+            <em><small>&mdash; Tábata de faria 🦋</small></em>
           </div>
           <hr class="my-3" />
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" :to="{ name: 'base-home' }"> Início </v-btn>
+          <v-btn color="pink" :to="{ name: 'base-home' }"> Início </v-btn>
         </v-card-actions>
       </v-card>
     </v-responsive>

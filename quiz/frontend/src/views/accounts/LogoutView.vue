@@ -2,18 +2,18 @@
   <v-container>
     <v-row align="start" no-gutters style="height: 150px">
       <v-col cols="12">
-        <v-card class="text-center">
+        <v-card class="text-center bye">
           <v-card-title class="headline"> Bye Bye </v-card-title>
           <v-card-text>
             <h2>Finalizar sessão?</h2>
             <p class="ma-4">
-              <v-btn :loading="loading" color="primary" class="mr-4" x-large block @click="logout">
+              <v-btn :loading="loading" color="pink" x-large block @click="logout">
                 SIM
               </v-btn>
               <v-btn
                 class="my-2"
                 block
-                color="primary"
+                color="pink"
                 variant="outlined"
                 :to="{ name: 'base-home' }">
                 Início
@@ -58,3 +58,8 @@ export default {
   },
 }
 </script>
+<style>
+.bye{
+  margin-top: 19rem;
+}
+</style>
