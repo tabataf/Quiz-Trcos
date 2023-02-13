@@ -26,10 +26,10 @@ export default {
         })
     })
   },
-  cadastro: (username, password) => {
+  cadastrar: (username, password) => {
     return new Promise((resolve, reject) => {
       api
-        .post("/api/accounts/cadastro", apiHelpers.dataToForm({ name, username, password }))
+        .post("/api/accounts/cadastrar", apiHelpers.dataToForm({ username, password }))
         .then((response) => {
           return resolve(response.data)
         })

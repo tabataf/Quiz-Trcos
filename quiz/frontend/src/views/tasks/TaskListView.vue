@@ -9,27 +9,42 @@
 
       <v-col cols="12" class="d-flex justify-center perguntas">
         <v-card class="pa-6 card">
-          <p class="titulo-pergunta" > 2 - O que é Machine Learnin? </p>
+          <p class="titulo-pergunta" > 1 - Considere o código Python 2.7 a seguir </p>
+          <br>
+          <p>L=[6,5,4,3,2,1]</p>
+          <p>for k in range(-3,3):</p>
+          <p> print L[k]</p>
+          <br>
+          <p>A execução desse código exibe os números:</p>
+
           <v-radio-group  class="respostas mt-2" row>
-              <v-radio class="my-0" label="2" value="um" />
-              <v-radio class="my-0" label="4" value="dois" />
-              <v-radio class="my-0" label="A sua é minha" value="tres" />
-              <v-radio class="my-0" label="7" value="quatro" />
+              <v-radio class="my-0" label="1 1 1 6 5 4" value="a" />
+              <v-radio class="my-0" label="1 2 3 4 5 6;" value="b" />
+              <!-- c é a correta -->
+              <v-radio class="my-0" label=" 3 2 1 6 5 4;" value="certo" />
+              <v-radio class="my-0" label="6 5 4 3 2 1;" value="d" />
+              <v-radio class="my-0" label=" 6 5 4 6 5 4;" value="e" />
             </v-radio-group>
         </v-card>
       </v-col>
 
       <v-col cols="12" class="d-flex justify-center perguntas">
         <v-card class="pa-6 card">
-        <p class="titulo-pergunta" > 2 - O que é Machine Learnin? </p>
+        <p class="titulo-pergunta" > 2 -Analise o código Python a seguir: </p>
+        <br>
+        <p> x = [1,2,3,4,5,6] x = x[:-1] for i in range(6):      x.append(i) y = x[-1]*x[1]**x[7]%x[9] print(y) </p>
+        <br>
+        <p> A opção que indica a saída produzida pela execução desse código é:</p>
           <v-radio-group  class="respostas mt-2" row>
-              <v-radio class="my-0" label="2" value="um" />
-              <v-radio class="my-0" label="4" value="dois" />
-              <v-radio class="my-0" label="A sua é minha" value="tres" />
-              <v-radio class="my-0" label="7" value="quatro" />
+              <v-radio class="my-0" label="5" value="a" />
+              <v-radio class="my-0" label="3" value="b" />
+              <v-radio class="my-0" label="2" value="certo" />
+              <v-radio class="my-0" label="1" value="d" />
+              <v-radio class="my-0" label="0" value="e" />
           </v-radio-group>
         </v-card>
       </v-col>
+      <v-btn class="envio" @click="envio"> ENVIAR </v-btn>
 
       <!-- <v-col cols="12" class="d-flex justify-center perguntas">
         <v-card class="pa-6 card">
@@ -40,16 +55,15 @@
               <v-radio class="my-0" label="9" value="dois" />
             </div>
           </v-radio-group>
-        </v-card>
-      </v-col> -->
-      <!-- <task-form :form-label="'Nova Tarefa'" @new-task="addNewTask" /> -->
-      <!-- <v-col v-for="item in items" :key="item.id" cols="12">
+        </v-card> -->
+      <!-- </v-col>  -->
+      <task-form :form-label="'Nova Pergunta'" @new-task="addNewTask" class="nova-pergunta"/>
+      <v-col v-for="item in items" :key="item.id" cols="12">
         <task :task="item" />
-      </v-col> -->
+      </v-col> 
     </v-row>
   </v-container>
 </template>
-
 <script>
 import { useAppStore } from "@/stores/appStore"
 import TasksApi from "@/api/tasks.api.js"
@@ -83,13 +97,20 @@ export default {
     addNewTask(task) {
       this.loading = true
       TasksApi.addNewTask(task.title).then((task) => {
-        this.appStore.showSnackbar(`Nova tarefa adicionada #${task.id}`)
+        this.appStore.showSnackbar(`Nova pergunta adicionada #${task.id}`)
         this.getTasks()
         this.loading = false
         console.log("oi")
       })
     },
+    envio(){
+      this.loading = true
+      if (respostas === certo)
+        return this.appStore.showSnackbar("Você acertou a questão 1", "danger")
+      else
+        return this.appStore.showSnackbar("Poxa você errou a questão 1", "danger")
   },
+},
 }
 </script>
 
@@ -116,9 +137,21 @@ export default {
   font-size: 1.3rem;
 }
 .card {
-  width: 25rem;
+  width: 35rem;
 }
 .titulo-pergunta{
   text-align: center;
+}
+.envio{
+  color: aliceblue;;
+  background-color:  rgb(255, 0, 111);
+  padding: 0.5rem ;
+  width: 35rem;
+  margin-bottom: 1rem;
+}
+.nova-pergunta{
+  width: 19rem;
+  margin-left: 2rem;
+  height: 8rem;
 }
 </style>

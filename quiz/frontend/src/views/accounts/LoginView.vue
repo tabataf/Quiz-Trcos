@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row align="center" class="mt-10 login" no-gutters>
+    <v-row align="center" class="mt-10" no-gutters>
       <v-col cols="12" sm="6" offset-sm="3">
         <v-sheet class="pa-2"> <h1>Login</h1> </v-sheet>
         <v-form>
@@ -31,24 +31,14 @@
             Login
           </v-btn>
           <v-btn
-            block
-            class="my-2"
-            size="large"
-            rounded="pill"
-            color="#C2185B"
-            append-icon="mdi-chevron-right"
-            @click="cadastro">
-            Cadastrar
-          </v-btn>
-          <v-btn
             class="my-2"
             block
             size="large"
             rounded="pill"
             color="pink"
             variant="outlined"
-            :to="{ name: 'base-home' }">
-            Início
+            :to="{ name: 'cadastrar' }">
+            Criar Usuário
           </v-btn>
         </v-form>
       </v-col>
@@ -86,7 +76,7 @@ export default {
     AccountsApi.whoami().then((response) => {
       if (response.authenticated) {
         this.saveLoggedUser(response.user)
-        this.appStore.showSnackbar("Usuário já logado", "warning")
+        this.appStore.showSnackbar("Usuário já logado", "danger")
         this.showTasks()
       }
     })
@@ -95,21 +85,6 @@ export default {
     login() {
       this.loading = true
       AccountsApi.login(this.username, this.password)
-        .then((response) => {
-          if (!response) {
-            this.appStore.showSnackbar("Usuário ou senha invalida", "danger")
-            return
-          }
-          this.saveLoggedUser(response.user)
-          this.showTasks()
-        })
-        .finally(() => {
-          this.loading = false
-        })
-    },
-    cadastro() {
-      this.loading = true
-      AccountsApi.cadastro(this.username, this.password)
         .then((response) => {
           if (!response) {
             this.appStore.showSnackbar("Usuário ou senha invalida", "danger")
@@ -131,14 +106,9 @@ export default {
       }
     },
     showTasks() {
-      this.$router.push({ name: "tasks-list" })
+      this.$router.push({ name: "quizz" })
       console.log("--> tasks")
     },
   },
 }
 </script>
-<style>
-.login{
-  margin-top: 19rem;
-}
-</style>
